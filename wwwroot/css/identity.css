@@ -1,0 +1,19 @@
+﻿body{
+    background: url('/img/background.jpg') no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+header{
+    display: none;
+}
+
+.dx-overlay-content.dx-popup-normal.dx-resizable{
+    position: fixed;
+    top: 50% !important;
+    left: 50% !important;
+    /* bring your own prefixes */
+    transform: translate(-50%, -50%) ;
+}

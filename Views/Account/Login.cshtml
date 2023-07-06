@@ -1,0 +1,65 @@
+﻿@using Microsoft.AspNetCore.Identity
+@model AVC.ViewModels.LoginViewModel
+@inject SignInManager<AVC.IdentityModels.IdentityUser> SignInManager
+
+@{
+    ViewData["Title"] = "Log in";
+}
+<link rel="stylesheet" href="~/css/identity.css" />
+<div id="popup" class="dx-overlay dx-popup dx-widget dx-visibility-change-handler">
+    <div class="dx-overlay-wrapper dx-popup-wrapper dx-overlay-modal dx-overlay-shader" data-bind="dxControlsDescendantBindings: true" style="z-index: 1501; position: fixed; left: 0px; top: 0px; transform: translate(0px, 0px); transition: all 0s ease 0s;">
+        <div class="dx-overlay-content dx-popup-normal dx-resizable" tabindex="0" style="width: 400px; height: 500px; z-index: 1501; margin: 0px; left: 0px; top: 0px; transition: none 0s ease 0s; opacity: 1;">
+            <div class="dx-toolbar dx-widget dx-visibility-change-handler dx-collection dx-popup-title" role="toolbar">
+                <div class="dx-toolbar-items-container">
+                    <div class="dx-toolbar-before">
+                        <div class="dx-item dx-toolbar-item dx-toolbar-label" style="max-width: 98px;">
+                            <div class="dx-item-content dx-toolbar-item-content">
+                                <div>Đăng nhập</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="dx-toolbar-center" style="margin: 0px 0px 0px 98px; float: none;"></div>
+                    <div class="dx-toolbar-after"></div>
+                </div>
+            </div>
+            <div class="dx-popup-content" style="height: 409px; max-height: none; min-height: auto;">
+                <form asp-route-returnurl="@ViewData["ReturnUrl"]" method="post">
+                    @Html.AntiForgeryToken()
+                    <div asp-validation-summary="All" class="text-danger"></div>
+                    <div class="form-group">
+                        <label asp-for="Gen"></label>
+                        <input asp-for="Gen" class="form-control" />
+                        <span asp-validation-for="Gen" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Password"></label>
+                        <input asp-for="Password" class="form-control" />
+                        <span asp-validation-for="Password" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <div class="checkbox">
+                            <label asp-for="RememberMe">
+                                <input asp-for="RememberMe" />
+                                @Html.DisplayNameFor(m => m.RememberMe)
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-outline-success">Đăng nhập</button>
+                    </div>
+                    <div class="form-group">
+                        @* <p>
+                            <a asp-action="ForgotPassword">Forgot your password?</a>
+                        </p> *@
+                        <p>
+                            <a  asp-action="Register" asp-route-returnurl="@ViewData["ReturnUrl"]">Đăng ký tài khoản?</a>
+                        </p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+}

@@ -1,0 +1,54 @@
+﻿@model AVC.ViewModels.RegisterViewModel
+@{
+    ViewData["Title"] = "Register";
+}
+<link rel="stylesheet" href="~/css/identity.css" />
+<div id="popup" class="dx-overlay dx-popup dx-widget dx-visibility-change-handler">
+    <div class="dx-overlay-wrapper dx-popup-wrapper dx-overlay-modal dx-overlay-shader" data-bind="dxControlsDescendantBindings: true" style="z-index: 1501; position: fixed; left: 0px; top: 0px; transform: translate(0px, 0px); transition: all 0s ease 0s;">
+        <div class="dx-overlay-content dx-popup-normal dx-resizable" tabindex="0" style="width: 400px; height: 500px; z-index: 1501; margin: 0px; left: 0px; top: 0px; transition: none 0s ease 0s; opacity: 1;">
+            <div class="dx-toolbar dx-widget dx-visibility-change-handler dx-collection dx-popup-title" role="toolbar">
+                <div class="dx-toolbar-items-container">
+                    <div class="dx-toolbar-before">
+                        <div class="dx-item dx-toolbar-item dx-toolbar-label" style="max-width: 98px;">
+                            <div class="dx-item-content dx-toolbar-item-content">
+                                <div>Đăng nhập</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="dx-toolbar-center" style="margin: 0px 0px 0px 98px; float: none;"></div>
+                    <div class="dx-toolbar-after"></div>
+                </div>
+            </div>
+            <div class="dx-popup-content" style="height: 409px; max-height: none; min-height: auto;">
+                <form asp-route-returnurl="@ViewData["ReturnUrl"]" method="post">
+                    <div asp-validation-summary="All" class="text-danger"></div>
+                    @Html.AntiForgeryToken()
+                    <div class="form-group">
+                        <label asp-for="Gen"></label>
+                        <input asp-for="Gen" class="form-control" />
+                        <span asp-validation-for="Gen" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Password"></label>
+                        <input asp-for="Password" class="form-control" />
+                        <span asp-validation-for="Password" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="ConfirmPassword"></label>
+                        <input asp-for="ConfirmPassword" class="form-control" />
+                        <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                    </div>
+                    <button type="submit" class="btn btn-outline-success">Đăng ký</button>
+                    <div class="form-group">
+                        <p>
+                            <a asp-action="Login" asp-route-returnurl="@ViewData["ReturnUrl"]">Đã có tài khoản?</a>
+                        </p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+}

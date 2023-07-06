@@ -1,0 +1,21 @@
+﻿@{
+    ViewData["Title"] = "Report";
+}
+
+<link rel="stylesheet" href="~/css/report.css" />
+<div id="formContainer"></div>
+<div id="tabPanelContainer"></div>
+<div class="options">
+    <div class="caption">Cài đặt</div>
+    <div class="option">
+        <span>Thời gian vận hành tối thiểu:</span>
+        <div id="min-hour"></div>
+        <span>Số lần cắt tối thiểu:</span>
+        <div id="min-count"></div>
+        <span>Khoảng thời gian nhóm:</span>
+        <div id="groupInterval"></div>
+    </div>
+</div>
+@section Scripts {
+    <script src="~/js/report.js" asp-append-version="true"></script>
+}
